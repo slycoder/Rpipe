@@ -58,7 +58,7 @@ Rpipe.eval <- function(e1, expr) {
                     envir = as.environment(-1),
                     ifnotfound = list(NULL),
                     inherits = TRUE)
-    func.names <- lookups[-which(sapply(lookups, is.null))]
+    func.names <- which(sapply(lookups, function(x) !is.null(x)))
     if (length(func.names) == 0) {
       stop(paste("Could not find pipe function", expr[1]))
     }
