@@ -1,0 +1,10 @@
+Package: Rpipe
+Type: Package
+Title: Pipes for R
+Version: 1.0
+Date: 2011-07-25
+Author: Jonathan Chang
+Maintainer: Jonathan Chang <jonchang@fb.com>
+Description: This package implements a basic pipe operator for data frames allowing the streaming manipulation of data.
+License: LGPL
+LazyLoad: yes
