@@ -41,7 +41,7 @@ Rpipe.prefix.default <- function(e1) {
   c("Rpipe.", "")
 }
 
-Rpipe.eval <- function(e1, expr) {
+Rpipe.eval <- function(e1, expr, env) {
   if (as.character(expr[1]) == "(") {
     do.call(`%|%`, list(e1 = e1, e2 = expr[[2]]))
   } else if (as.character(expr[1]) == "%|%") {
@@ -63,12 +63,12 @@ Rpipe.eval <- function(e1, expr) {
       stop(paste("Could not find pipe function", expr[1]))
     }
     do.call(names(func.names)[1],
-            c(list(e1), as.list(expr[-1])))
+            c(list(e1), as.list(expr[-1])), env=env)
   }
 }
 
 `%|%` <- function(e1, e2) {
   expr <- substitute(e2)
-  Rpipe.eval(e1, expr)
+  Rpipe.eval(e1, expr, env=parent.frame())
 }
 
